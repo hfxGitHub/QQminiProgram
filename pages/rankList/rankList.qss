@@ -1,0 +1,151 @@
+page {
+    width: 100%;
+    height: 100%;
+}
+.container {
+    box-sizing: border-box;
+    padding-bottom: 20rpx;
+    width: 100%;
+    min-height: 100%;
+    background-image: linear-gradient(#EF473A, #C70D3A);
+}
+.head {
+    overflow: hidden;
+    width: 683rpx;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 59rpx;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.rightLogo {
+    width: 242rpx;
+    height: 130rpx;
+}
+
+.title {
+    font-size: 54rpx;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.date {
+    color: #fff;
+    font-size: 24rpx;
+    margin-top: 40rpx;
+}
+.rank {
+    width: 683rpx;
+    margin: 0 auto;
+    margin-top: 42rpx;
+    background: #fff;
+}
+
+.loading {
+    text-align: center;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 25rpx;
+}
+
+.error {
+    text-align: center;
+    font-size: 25rpx;
+}
+
+.wrapper {
+    height: 274rpx;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+.br {
+    height: 2rpx;
+    background: #000;
+    filter: opacity(0.1);
+}
+.content {
+    top: 54rpx;
+    right: 31rpx;
+    position: absolute;
+    height: 150rpx;
+    width: 98%;
+}
+.contentLeft {
+    position: relative;
+    float: left;
+}
+.contentRight {
+    box-sizing: border-box;
+    padding-left: 5rpx;
+    float: right;
+    width: 453rpx;
+}
+.contentImg {
+    width: 200rpx;
+    height: 150rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow:2px 2px 5px 0px rgba(0,0,0,0.25);
+
+}
+.index {
+    text-align: center;
+    left: 22rpx;
+    z-index: 999;
+    background: #C70D3A;
+    color: #fff;
+    font-size: 20rpx;
+    position: absolute;
+    top: -11rpx;
+    width: 32rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+}
+.cir {
+    position: absolute;
+    width: 22rpx;
+    height: 22rpx;
+    background: #FF406E;
+    transform: rotate(45deg);
+    top: -5.5rpx;
+    left: 43rpx; 
+}
+.contentTitle {
+    margin-top: 12rpx;
+    font-size: 30rpx;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+.contentDown {
+    height: 50rpx;
+    line-height: 50rpx;
+    margin-top: 50rpx;
+    color: #878787;
+    font-size: 28rpx;
+    overflow: hidden;
+}
+.joinIn {
+    width: 140rpx;
+    height: 43rpx;
+    background: #C70D3A;
+    color: #fff;
+    float: right;
+    line-height: 43rpx;
+    font-size: 20rpx;
+    margin-right: 20rpx;
+    margin-top: 5rpx;
+    border-radius: 1rpx;
+    padding: 0;
+}
+.rankWrapper {
+    box-shadow:0 0 7px 12rpx rgba(0,0,0,0.12);
+}

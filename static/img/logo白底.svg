@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="178px" height="205px" viewBox="0 0 178 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>编组 3</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-1063.000000, -326.000000)">
+            <g id="编组-3" transform="translate(1063.000000, 326.000000)">
+                <polygon id="矩形" fill="#C70D3A" transform="translate(88.930620, 102.458648) rotate(-270.000000) translate(-88.930620, -102.458648) " points="-12.9999764 102.5 38.1388077 14.0827044 140.000024 14 190.86124 102.5 139.86124 190.917296 38.0000236 190.917296"></polygon>
+                <polygon id="矩形备份-3" fill="#FFFFFF" transform="translate(88.500000, 102.500000) rotate(-270.000000) translate(-88.500000, -102.500000) " points="2.04773595e-05 102.539034 44.4006373 19.0780683 132.840378 19 177 102.539034 132.719881 186 44.2801397 186"></polygon>
+                <g id="编组" transform="translate(91.500000, 103.000000) rotate(-90.000000) translate(-91.500000, -103.000000) translate(46.000000, 55.000000)" fill="#C70D3A">
+                    <rect id="矩形" x="11" y="22" width="70" height="8"></rect>
+                    <rect id="矩形备份-4" x="28" y="0" width="35" height="8"></rect>
+                    <rect id="矩形备份-5" x="28" y="88" width="35" height="8"></rect>
+                    <rect id="矩形备份-2" x="13" y="66" width="70" height="8"></rect>
+                    <rect id="矩形备份" x="0" y="44" width="91" height="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

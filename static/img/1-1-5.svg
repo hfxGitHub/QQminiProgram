@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="24px" viewBox="0 0 15 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>gengduo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="2.27463324e-13 0 15 0 15 24 2.27463324e-13 24"></polygon>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-1首页" transform="translate(-703.000000, -429.000000)">
+            <g id="编组-10" transform="translate(0.000000, 420.000000)">
+                <g id="编组-7" transform="translate(32.000000, 0.000000)">
+                    <g id="编组-3" transform="translate(556.000000, 9.000000)">
+                        <g id="gengduo" transform="translate(122.500000, 12.000000) rotate(-360.000000) translate(-122.500000, -12.000000) translate(115.000000, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <path d="M0.295043569,22.5286278 L12.6778484,12.0016631 L0.295043569,1.47483227 C-0.0910698806,1.14645262 -0.0966229198,0.593885576 0.300911675,0.255796503 C0.70136063,-0.0845023018 1.34055089,-0.0843683786 1.73485606,0.250841346 L14.7048653,11.2770048 C14.9291529,11.4676779 15.0251693,11.7340846 14.9882278,11.9901792 C15.0354483,12.2514633 14.9405347,12.5261398 14.7048653,12.7264888 L1.73485606,23.7526522 C1.34870322,24.0809314 0.698564419,24.0856188 0.300911675,23.7476971 C-0.0993797478,23.4072644 -0.099261598,22.8638376 0.295043569,22.5286278 Z" id="Fill-1" fill="#A2A2A2" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,151 @@
+.main{
+    background:#F6F6F6;
+}
+swiper{
+    height: 425rpx;
+}
+swiper-item image {
+    width: 750rpx;
+    height: 425rpx;
+}
+.activityTitle{
+    background:white;
+    width:732rpx;
+    padding:49rpx 0 36rpx 18rpx;
+    margin-bottom: 44rpx;
+}
+.activityName{
+    display: flex;
+    height: 34rpx;
+}
+.activityNameText{
+    display: block;
+    height: 34rpx;
+    width: 661rpx;
+    margin-left:18rpx;
+    font-size:34rpx;
+    color:rgba(0, 0, 0, 1);
+    font-family:"思源黑体 CN Medium";
+}
+.IdCard{
+    display:flex;
+    margin-top:29rpx;
+}
+.IdImg{
+    width:44rpx;
+    height:44rpx;
+    margin-right:14rpx;
+}
+.IdName{
+    display:block;
+    width:248rpx;
+    height:37rpx;
+    margin-top:7rpx;
+    margin-left:8rpx;
+    line-height: 28rpx;
+    color:white;
+    font-size:20rpx;
+    margin-right: 2rpx;
+    text-align: center;
+}
+.deadLine{
+    width:353rpx;
+    height:32rpx;
+    font-size:32rpx;
+    font-family:思源黑体 CN Normal;
+    margin-top:28rpx;
+}
+.Tips{
+    display:flex;
+    margin-top:48rpx;
+}
+.TipsContent{
+    display:block;
+    width:150rpx;
+    height:46rpx;
+    border:1rpx solid rgba(210, 210, 210, 1);
+    margin-right:22rpx;
+    font-size:28rpx;
+    line-height:46rpx;
+    text-align:center;
+}
+
+/* 排名显示部分 */
+.NumberSort{
+    width:106rpx;
+    position:absolute;
+    top:572rpx;
+    left:599rpx;
+}
+.bigNumber{
+    width:47rpx;
+    height:56rpx;
+    font-size:56rpx;
+    color:rgba(199, 13, 58, 1);
+    font-family:"站酷高端黑"; 
+    margin-left:30rpx;
+    font-weight:bold;
+}
+.nowNumber{
+    margin-top:12rpx;
+    font-family:"思源黑体 CN Normal";
+    font-size:24rpx;
+    color:rgba(162, 162, 162, 1);
+
+}
+
+/* 主体部分 */
+.activityContent{
+    width:750rpx;
+    margin-bottom: 122rpx;
+    background:rgba(255, 255, 255, 1);
+}
+
+
+
+
+/* 底部按钮 */
+.joinBtn{
+    display: flex;
+    height:120rpx;
+    background:rgba(255, 255, 255, 1);
+}
+.fixedOnBottom{
+    position: fixed;
+    bottom: 0rpx;
+    width: 750rpx;
+}
+.backHomeBtn{
+    width:250rpx;
+    height: 72rpx;
+    background: rgba(222, 222, 222, 0.32);
+    margin: 16rpx 0 auto 44rpx;
+    padding-top: 16rpx;
+}
+
+.backHomeBtnContent{
+    display: block;
+    width:120rpx;
+    height:30rpx;
+    font-size:30rpx;
+    font-family:思源黑体 CN Normal;
+    font-weight:400;
+    color:rgba(0,0,0,1);
+    line-height:45rpx;
+    margin: 0 auto auto 65rpx;
+}
+.joinNowContent{
+    font-size:32rpx;
+    font-family:思源黑体 CN Normal;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:88rpx;
+    margin: 0 auto auto 92rpx;
+    width: 312rpx;
+    height: 88rpx;
+    background: rgba(199, 13, 58, 1);
+    border-radius: 0;
+    margin: 16rpx auto auto 99rpx;
+    /* padding-top: 16rpx; */
+    text-align: center;
+}

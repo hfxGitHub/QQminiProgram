@@ -1,0 +1,227 @@
+.container {
+    background: #F9F9F9;
+}
+.swiperContainer {
+    height: 292rpx;
+    box-sizing: border-box;
+    padding: 48rpx 0 60rpx 0;
+}
+.swiperWrapper {
+    height: 184rpx;
+    
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image {
+    height: 147rpx;
+    width: 466rpx;
+    margin: 0 34rpx;
+    transition: all 0.3s;
+}
+
+.slide-show {
+    height: 184rpx;
+    width: 466rpx;
+}
+
+.middleTitle {
+    margin: 0 32rpx;
+    overflow: hidden;
+}
+
+.middleLeft {
+    float: left;
+}
+
+.middleLeftTitle {
+    font-size: 42rpx;
+    font-weight: bolder;
+    letter-spacing: 8rpx;
+}
+
+.middleLeftLogo {
+    width: 31rpx;
+    height: 39rpx;
+    vertical-align: -5rpx;
+}
+
+.middleRight {
+    float: right;
+}
+
+.middleRightTitle {
+    color: #FFA2A2A2;
+    font-size: 24rpx;
+    margin-right: 9rpx;
+}
+
+.middleLeftTurn {
+    width: 20rpx;
+    height: 30rpx;
+    vertical-align: -5rpx;
+}
+
+.scrollContainer {
+    margin-top: 29rpx;
+    box-sizing: border-box;
+    padding: 38rpx 20rpx;
+    background: #fff;
+}
+
+.scrollWrapper {
+    white-space: nowrap; 
+    display: flex
+}
+
+.scrollItem {
+    width: 490rpx;
+    margin: 0 13rpx;
+    display: inline-block;
+}
+
+.scrollItemImgWrapper {
+    margin-top: 14rpx;
+}
+
+.itemContent {
+    margin-top: 14rpx;
+    font-size: 24rpx;
+    width: 490rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.scrollItemImg {
+    width: 490rpx;
+    height: 210rpx;
+}
+
+.schoolActiveWrapper {
+    margin-top: 42rpx;
+    padding-bottom: 44rpx;
+}
+
+.schoolActiveContainer {
+    width: 686rpx;
+    margin: 0 auto;
+}
+
+.schoolActiveContainerItem {
+    margin-top: 30rpx;
+}
+
+.schoolActiveWrapperTitle {
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    font-size: 42rpx;
+    font-weight: bolder;
+    letter-spacing: 8rpx;
+}
+
+.schoolActiveHead {
+    display: flex;
+    height: 44rpx;
+}
+
+.schoolActiveHeadLeft {
+
+}
+
+.schoolActiveHeadLeftLogo {
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.schoolActiveHeadRight {
+    margin-left: 17rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    padding-left: 8rpx;
+    padding-right: 27rpx;
+    background: #C70D3A;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+.schoolActiveHeadRightTurn {
+    width: 15rpx;
+    height: 20rpx;
+    margin-left: 26rpx;
+}
+
+.schoolActiveContentWrapper {
+    margin-top: 20rpx;
+    width: 686rpx;
+    height: 219rpx;
+    background: #fff;
+    box-shadow:0px 0px 7px 0px rgba(0,0,0,0.12);
+    border-radius:1px;
+}
+
+.schoolActiveContentWrapperRight {
+    float: left;
+    margin-top: 35rpx;
+    margin-left: 26rpx;
+    margin-right: 27rpx;
+}
+
+.schoolActiveContentWrapperRightImg {
+    width: 200rpx;
+    height: 150rpx;
+}
+
+.schoolActiveContentWrapperLeft {
+    width: 414rpx;
+    float: right;
+    margin-top: 23rpx;
+    margin-right: 19rpx;
+}
+
+.schoolActiveContentWrapperLeftTitle {
+    font-size: 28rpx;
+}
+
+.schoolActiveContentWrapperLeftTagWrapper {
+    display: flex;
+    margin-top: 12rpx;
+}
+
+.schoolActiveContentWrapperLeftTagItem {
+    height: 33.6rpx;
+    padding: 0rpx 13rpx;
+    border:1px solid rgba(210,210,210,1);
+    text-align: center;
+    line-height: 33.6rpx;
+    font-size: 18rpx;
+    margin-right: 10rpx;
+    letter-spacing: 1.8rpx;
+    font-weight: 200;
+}
+
+.schoolActiveContentWrapperLeftTimerWrapper {
+    margin-top: 25rpx;
+    overflow: hidden;
+}
+
+.schoolActiveContentWrapperLeftTimer {
+    float: right;
+    font-size: 20rpx;
+    margin-right: 14rpx;
+}
+
+.end {
+    text-align: center;
+    color: #57000000;
+    font-size: 16rpx;
+    box-sizing: border-box;
+    padding-bottom: 22rpx;
+}
+
+.ending {
+    letter-spacing: 3rpx;
+}

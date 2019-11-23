@@ -1,0 +1,218 @@
+.content{
+    width:100%;
+}
+.wrap{
+    background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png) no-repeat;
+    height:425rpx;
+    width:750rpx;
+}
+.wrap-mask{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+}
+#introductionTab{
+    font-size:32rpx;
+    display:flex;
+    height:107rpx;
+}
+.onTop{
+    width:100%;
+    background:white;
+    position:fixed;
+    top:0rpx;
+    -webkit-overflow-scrolling : touch;
+}
+.onTopSlider{
+    position:fixed;
+    top:107rpx;
+    -webkit-overflow-scrolling : touch;
+}
+.active{
+    width:50%;
+    color:#000000;
+}
+.disable{
+    width:50%;
+    color:#A2A2A2;
+}
+.moveSlider{
+    width:375rpx;
+    height:13rpx;
+    background:rgba(199, 13, 58, 1);
+}
+.backHome{
+    width:140rpx;
+    height:48rpx;
+    position:absolute;
+    top:36rpx;
+    display:flex;
+    background:rgba(199, 13, 58, 1);
+    border-radius:1rpx
+}
+.backImg{
+    height:16.8rpx;
+    width:10.7rpx;
+    margin-top:16rpx;
+    margin-left:10rpx;
+}
+.backHomeContent{
+    font-size:20rpx;
+    width:82rpx;
+    height:48rpx;
+    text-align:center;
+    background:rgba(199, 13, 58, 1);
+    color:rgba(255, 255, 255, 1);
+    /* padding-top:10rpx; */
+    margin-left:17rpx;
+    line-height:48rpx;
+    font-family:PingFang SC Bold;
+}
+.associationTitle{
+    position:absolute;
+    top:169rpx;
+    left:237rpx;
+    color:white;
+    width:276rpx;
+    height:96rpx;
+}
+.associationName{
+    background:rgba(199, 13, 58, 1);
+    font-size:22rpx;
+    width:276rpx;
+    height:52rpx;
+    text-align:center;
+    line-height:52rpx;
+    color:rgba(255, 255, 255, 1);
+}
+.associationSlogan{
+    color:rgba(255, 255, 255, 1);
+    font-size:22rpx;
+    text-align:center;
+    margin-top:14rpx;
+}
+.introductionContent{
+    background:#F6F6F6;
+    padding-top:47rpx;
+}
+.brief{
+    background:white;
+    width:686rpx;
+    margin-left:32rpx;
+    padding-top:27rpx;
+    padding-bottom:27rpx;
+    margin-bottom: 16rpx;
+    box-shadow:0 0 7px 0 rgba(0,0,0,0.12);
+}
+.briefContent{
+    width:88%;
+    margin-left:6%;
+}
+.createTime{
+    width:100%;
+    border-left:8rpx solid rgba(199, 13, 58, 1);
+    padding-left:8rpx;
+    font-size:26rpx;
+    color:rgba(0,0,0,1);
+    font-family:"PingFang SC Medium";
+    margin-bottom:6rpx;
+}
+.TimeContent{
+    padding-left:16rpx;
+    font-family:"PingFang SC Medium";
+    font-size:22rpx;
+    color:rgba(0,0,0,0.57);
+    width:100%;
+    margin-bottom:20rpx;
+    line-height:30rpx;
+}
+.belongTo{
+    padding-left:16rpx;
+    font-family:"PingFang SC Medium";
+    font-size:22rpx;
+    color:rgba(0,0,0,0.57);
+    width:100%;
+    margin-bottom:20rpx;
+    line-height:30rpx;
+}
+.aimTo{
+    padding-left:16rpx;
+    font-family:"PingFang SC Medium";
+    font-size:22rpx;
+    color:rgba(0,0,0,0.57);    
+    width:100%;
+    margin-bottom:20rpx;
+    line-height:30rpx;
+}
+.famousActivity{
+    padding-left:16rpx;
+    font-family:"PingFang SC Medium";
+    font-size:22rpx;
+    color:rgba(0,0,0,0.57);
+    width:100%;
+}
+.activityContent{
+    display:block;
+    margin-bottom:18rpx;
+    line-height:30rpx;
+}
+
+/* 近期活动版块 */
+.latestActivity{
+    width:686rpx;
+    margin-left:32rpx;
+}
+.latestActivityContent{
+    width:100%;
+    margin-bottom:26rpx;
+    height:219rpx;
+    display:flex;
+    background:white;
+    box-shadow:0 0 7px 0 rgba(0,0,0,0.12);
+}
+.latestActivityImg{
+    width:200rpx;
+    height:150rpx;
+    margin:35rpx 0 34rpx 26rpx;
+}
+.activityText{
+    width:414rpx;
+    margin-left:27rpx;
+}
+.latestActivityTitle{
+    font-family:"思源黑体 CN Normal";
+    font-size:28rpx;
+    margin:23rpx 0 0 0;
+    display:block;
+}
+.latestActivityTip{
+    border:1rpx solid rgba(210, 210, 210, 1);
+    width:106.4rpx;
+    height:33.6rpx;
+    padding:8rpx 13rpx 8rpx 13rpx;
+    font-size:18rpx;
+    color:rgba(0, 0, 0, 1);
+    font-family:"思源黑体 CN Light";
+    margin-right:10rpx;
+}
+.latestActivityTime{
+    display:block;
+    font-size:20rpx;
+    font-family:"思源黑体 CN Normal";
+    magin-left:313rpx;
+    margin-right:13rpx;
+    margin-top:36rpx;
+    text-align:right;
+}
+
+
+.end {
+    text-align: center;
+    color: #57000000;
+    font-size: 16rpx;
+    box-sizing: border-box;
+    padding-bottom: 22rpx;
+}
+.ending {
+    letter-spacing: 3rpx;
+}

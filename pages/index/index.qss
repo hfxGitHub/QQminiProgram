@@ -1,0 +1,153 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container, .login, .loading {
+  width: 100%;
+}
+.container {
+  min-height: 100%;
+  background-image: linear-gradient(#C70D3A, #FF3D54);
+  position: relative;
+}
+.loading {
+  z-index: 999;
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: opacity(0.5);
+  color: #fff;
+  display: flex;
+}
+.loadingText {
+  margin: auto;
+}
+.login {
+  text-align: center;
+}
+.loginPage {
+  width: 676rpx;
+  background: #fff;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 85rpx 64rpx 40rpx 69rpx;
+  box-shadow:5px 11px 22px 0px rgba(175,10,50,0.64);
+}
+.logoWrapper {
+  box-sizing: border-box;
+  padding-top: 61rpx;
+  margin-bottom: -1px;
+}
+.logo {
+  margin: 0 auto;
+  z-index: -5;
+  width: 149rpx;
+  height: 110rpx;
+  display: block;
+}
+.foot {
+  width: 100%;
+  text-align: center;
+  margin-top: 51rpx;
+  box-sizing: border-box;
+  padding-bottom: 10rpx;
+}
+.footLogo {
+  width: 31rpx;
+  height: 35rpx;
+}
+.form {
+  overflow: hidden;
+}
+.TitleWrapper {
+  text-align: left;
+}
+.title {
+  font-size: 20rpx;
+  color: #fff;
+  vertical-align: 10rpx;
+  margin-left: 15rpx;
+}
+.shu {
+  width: 10rpx;
+  height: 46rpx;
+  background: #C70D3A;
+  display: inline-block;
+  vertical-align: -5rpx;
+}
+
+.Title {
+  font-size: 48rpx;
+  font-weight: bolder;
+  margin-left: 12rpx;
+}
+
+.id {
+  margin-top: 81rpx;
+  text-align: left;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.passwd {
+  overflow: hidden;
+  margin-top: 33rpx;
+  text-align: left;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.idInput {
+  margin-top: 38rpx;
+  font-size: 32rpx;
+  color: #000;
+  font-weight: normal;
+}
+.idPlaceHolder {
+  font-size: 32rpx;
+  color: #D8D8D8;
+  font-weight: normal;
+}
+.br {
+  margin-top: 18rpx;
+  height: 1px;
+  background: #000;
+  filter: opacity(0.1);
+}
+.left {
+  width: 273rpx;
+  float: left;
+}
+.right {
+  float: right;
+  width: 188rpx;
+  height: 80rpx;
+  background: #979797;
+  margin-top: 77rpx;
+}
+.btn {
+  width: 542rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  background: #C70D3A;
+  color: #fff;
+  margin-top: 62rpx;
+  border-radius: 1rpx;
+}
+.onlyLook {
+  margin-top: 36rpx;
+  text-align: center;
+}
+.onlyLookBtn {
+  width: 60%;
+  color: #D8D8D8;
+  font-size: 24rpx;
+  height: 30rpx;
+  background: #fff;
+  line-height: 30rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.onlyLookWrapper {
+  background: #fff;
+}

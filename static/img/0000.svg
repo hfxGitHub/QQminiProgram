@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="14px" viewBox="0 0 11 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>gengduo备份</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="6.42310145e-17 0 10.7471264 0 10.7471264 14 6.42310145e-17 14"></polygon>
+    </defs>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="社团栏" transform="translate(-330.000000, -14.000000)">
+            <g id="编组-7">
+                <g id="编组-8" transform="translate(72.000000, 0.000000)">
+                    <g id="gengduo" transform="translate(258.000000, 14.000000)">
+                        <g>
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <path d="M0.21139137,13.1416996 L9.08336266,7.00097014 L0.21139137,0.860318822 C-0.0652493014,0.668764031 -0.0692279157,0.346433253 0.215595721,0.149214627 C0.502507425,-0.0492930094 0.960471326,-0.0492148875 1.24298116,0.146324118 L10.5356697,6.57825277 C10.6963663,6.68947877 10.7651596,6.84488267 10.7386919,6.99427119 C10.7725243,7.14668693 10.704521,7.30691486 10.5356697,7.42378515 L1.24298116,13.8557138 C0.966312271,14.04721 0.500504009,14.0499443 0.215595721,13.8528233 C-0.0712031143,13.6542375 -0.0711184629,13.3372386 0.21139137,13.1416996 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
