@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/rankList/rankList",
+    "pages/home/home",
+    "pages/Content/content",
+    "pages/introduction/introduction"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "QQ小程序",
+    "navigationBarTextStyle":"black"
+  },
+  "groupIdList":[
+    "620033746"
+  ]
+}
