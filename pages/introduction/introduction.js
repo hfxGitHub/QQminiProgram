@@ -1,6 +1,7 @@
 Page({
     data:{
-        baseUrl:'http://173.82.115.226:8080/api/',
+        baseUrl:'http://173.82.115.226:8080',
+        choseId:'',
         toContent: '/pages/Content/content',
         toHome: '/pages/home/home',
         text:"协会介绍",
@@ -9,13 +10,15 @@ Page({
         animation:{},
         scrollTop:false,
         backImgHeight:0,
-        AssociationName:"",
-        AssociationSlogan:"",
-        TimeContent:"",
-        belongToContent:"",
-        aimToContent:"",
-        famousActivityContent:[],
-        
+        AssociationName:"暂无更多信息~",
+        AssociationSlogan:"暂无更多信息~",
+        TimeContent:"暂无更多信息~",
+        belongToContent:"暂无更多信息~",
+        aimToContent:"暂无更多信息~",
+        famousActivityContent:['暂无更多信息~'],
+        backgroundImg:"",
+        acticityData:[],
+        noActicity:1,
         // 左右滑动
         touchDot:0,
         nth:0,
@@ -28,19 +31,45 @@ Page({
             backImgHeight:425 / 750 * qq.getSystemInfoSync().windowWidth
         })
         const that =this;
+        var pages = getCurrentPages();
+        var cuurrentPage = pages[pages.length-1];
+        var option = cuurrentPage.options;
+        this.setData({
+            choseId:option.id,
+        })          
         qq.request({
-            url: this.data.baseUrl + 'queryAssociation?association_id=3',
+            url: this.data.baseUrl + '/api/queryAssociation?association_id='+this.data.choseId,
             method:'POST',
             success(res){
                 var data = res.data.data;
-                that.data.famousActivityContent.push(data.brand_activity)
+                var str = data.brand_activity.replace(/\n/g,"|-&");
+                var acticityData = str.split("|-&");
                 that.setData({
-                    AssociationName:data.name,
-                    AssociationSlogan:data.introduction,
-                    TimeContent:data.create_date,
-                    belongToContent:data.affiliated_unit.present,
-                    aimToContent:data.purpose,
+                    AssociationName:data.name==undefined?'暂无更多信息~':data.name,
+                    AssociationSlogan:data.introduction==undefined?'暂无更多信息~':data.introduction,
+                    TimeContent:data.create_date==undefined?'暂无更多信息~':data.create_date,
+                    belongToContent:data.affiliated_unit==undefined?'暂无更多信息~':data.affiliated_unit,
+                    aimToContent:data.purpose==undefined?'暂无更多信息~':data.purpose,
+                    backgroundImg:that.data.baseUrl+data.img_bg,
+                    famousActivityContent:acticityData,
                 })
+            }
+        })
+        qq.request({
+            url: this.data.baseUrl + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num=1&page_count=10',
+            method:'POST',
+            success(res){
+                var data = res.data.data;
+                for(var i = 0;i<data.length;i++){
+                    data[i].file = that.data.baseUrl + data[i].file;
+                    for(var j = 0;j<data[i].poster.length;j++){
+                        data[i].poster[j] = that.data.baseUrl + data[i].poster[j];
+                    }
+                }
+                that.setData({      
+                    acticityData:data,
+                    noActicity:data.length==0?true:false,
+                })                
             }
         })
     },

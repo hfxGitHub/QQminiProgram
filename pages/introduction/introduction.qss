@@ -2,7 +2,6 @@
     width:100%;
 }
 .wrap{
-    background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png) no-repeat;
     height:425rpx;
     width:750rpx;
 }
@@ -92,6 +91,7 @@
     margin-top:14rpx;
 }
 .introductionContent{
+    min-height: 650rpx;
     background:#F6F6F6;
     padding-top:47rpx;
 }
@@ -158,6 +158,12 @@
 }
 
 /* 近期活动版块 */
+
+.errorView{
+    width: 100%;
+    margin:100rpx auto 0 auto;
+}
+
 .latestActivity{
     width:686rpx;
     margin-left:32rpx;

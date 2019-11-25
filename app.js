@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    //localUrl: 'http://192.168.31.32:8080'
+    localUrl: 'http://173.82.115.226:8080'
   }
 })

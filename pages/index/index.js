@@ -1,9 +1,10 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+let localUlr = app.globalData.localUrl
 Page({
   data: {
+    url: localUlr + '/api/login',
     login: false,
     logoSrc: '/static/img/0-1-1.svg',
     logo2Src: '/static/img/0-1-2.svg',
@@ -29,8 +30,6 @@ Page({
       //url: '../rankList/rankList',
       url: '/pages/rankList/rankList'
     })*/
-    qq.redirectTo({
-      url: '/pages/home/home'
-    })
+
   }
 })

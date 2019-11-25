@@ -1,5 +1,5 @@
 <view class="content">
-    <view class="backgroundIMG">
+    <view class="backgroundIMG" style="background: url({{backgroundImg}}) no-repeat center">
         <view class="wrap">
             <view class="wrap-mask">
             </view>
@@ -33,113 +33,26 @@
                 <view class="createTime">建设宗旨</view>
                 <view class="aimTo">{{aimToContent}}</view>
                 <view class="createTime">品牌活动</view>
-                <view class="famousActivity" qq:for="{{famousActivityContent}}" qq:key="{{index}}">
-                    <text class="activityContent">{{item.value}}</text>
+                <view class="famousActivity" wx:for="{{famousActivityContent}}" wx:key="unique2">
+                    <text class="activityContent">{{item}}</text>
                 </view>
             </view>
         </view>
         <view class="latestActivity" id="latestActivity" hidden="{{_active==1?true:false}}">
-            <navigator url="{{toContent}}">
+            <view class="errorView" hidden="{{noActicity==1?false:true}}">
+                <image src="../../static/img/error社团活动.svg" style="width:468rpx;height:324rpx;margin-bottom:22rpx;margin-left:109rpx;"></image>
+                <text style="display:block;text-align:center;font-size:22rpx;color:#A2A2A2;">暂无活动~</text>
+            </view>
+            <navigator url="{{toContent}}" id="{{item.id}}" wx:for="{{acticityData}}" wx:key="unique2">
                 <view class="latestActivityContent">
                     <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
+                        src="{{item.poster[0]}}"></image>
                     <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator url="{{toContent}}">
-                <view class="latestActivityContent">
-                    <image class="latestActivityImg"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png"></image>
-                    <view class="activityText">
-                        <text class="latestActivityTitle">“承诺自然”一期核心成员招募，欢迎小伙伴加入</text>
-                        <text class="latestActivityTip">十佳社团</text>
-                        <text class="latestActivityTip">综测加分</text>
-                        <text class="latestActivityTip">校级社团</text>
-                        <text class="latestActivityTime">2019.11.19</text>
+                        <text class="latestActivityTitle">{{item.name}}</text>
+                        <view wx:for="{{item.tag}}" wx:key="unique2">
+                            <text class="latestActivityTip"></text>
+                        </view>
+                        <text class="latestActivityTime">{{item.date_start}}~{{item.date_end}}</text>
                     </view>
                 </view>
             </navigator>

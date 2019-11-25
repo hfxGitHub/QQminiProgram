@@ -1,5 +1,5 @@
 .container {
-    background: #F9F9F9;
+    background: #F6F6F6;
 }
 .swiperContainer {
     height: 292rpx;
@@ -29,6 +29,50 @@
     width: 466rpx;
 }
 
+.opinionWrapper {
+    padding-bottom: 58rpx;
+}
+
+.opinionContainer {
+    box-shadow:0px 0px 7px 0px rgba(0,0,0,0.12);
+    width: 686rpx;
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.opinionContainerLogoWrapper {
+    width: 78rpx;
+    height: 78rpx;
+}
+
+.opinionContainerLogo {
+    width: 78rpx;
+    height: 78rpx;
+    
+}
+
+.opinionContainerText {
+    color: #999999;
+    font-size: 24rpx;
+}
+
+.opinionContainerBtn {
+    
+    width:130rpx;
+    height:44rpx;
+    border-radius:1px;
+    border:1rpx solid rgba(199,13,58,1);
+    font-size: 22rpx;
+    color: #C70D3A;
+    margin: 0;
+    margin-left: 84rpx;
+    line-height: 22rpx;
+    padding: 11rpx 15rpx;
+}
+
 .middleTitle {
     margin: 0 32rpx;
     overflow: hidden;
@@ -55,7 +99,7 @@
 }
 
 .middleRightTitle {
-    color: #FFA2A2A2;
+    color: #A2A2A2A2;
     font-size: 24rpx;
     margin-right: 9rpx;
 }
@@ -75,7 +119,7 @@
 
 .scrollWrapper {
     white-space: nowrap; 
-    display: flex
+    display: flex;
 }
 
 .scrollItem {
@@ -92,13 +136,14 @@
     margin-top: 14rpx;
     font-size: 24rpx;
     width: 490rpx;
-    display: flex;
-    flex-wrap: wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .scrollItemImg {
     width: 490rpx;
-    height: 210rpx;
+    height: 368rpx;
 }
 
 .schoolActiveWrapper {
@@ -137,8 +182,12 @@
     height: 44rpx;
 }
 
+.schoolActiveHeadRightTitle {
+    font-size: 20rpx;
+    vertical-align: 5rpx;
+}
+
 .schoolActiveHeadRight {
-    margin-left: 17rpx;
     height: 44rpx;
     line-height: 44rpx;
     padding-left: 8rpx;
@@ -155,7 +204,6 @@
 }
 
 .schoolActiveContentWrapper {
-    margin-top: 20rpx;
     width: 686rpx;
     height: 219rpx;
     background: #fff;

@@ -9,25 +9,38 @@
             bindchange="onShow"
         >
 
-            <swiper-item class="imgContainer" qq:for="{{banner}}" qq:key="{{index}}">
-                <image src="{{item.src}}" class="{{Index === index? 'slide-image slide-show':'slide-image'}}"/>
+            <swiper-item class="imgContainer" qq:for="{{banner}}" qq:key="{{item.id}}">
+                <navigator url="{{item.url}}">
+                    <image src="{{item.img}}" class="{{Index === index? 'slide-image slide-show':'slide-image'}}"/>
+                </navigator>
             </swiper-item>
         </swiper>
+    </view>
+    <view class="opinionWrapper">
+        <view class="opinionContainer">
+            <view class="opinionContainerLogoWrapper">
+                <image class="opinionContainerLogo" src="/static/img/advice.png" />
+            </view>
+            <text class="opinionContainerText">了解蜂拥更多信息、提供意见反馈</text>
+            <button 
+                open-type="openGroupProfile" 
+                group-id="695628567"
+                class="opinionContainerBtn"
+            >立即加入</button>
+        </view>
     </view>
     <view class="middleTitle">
         <view class="middleLeft">
             <text class="middleLeftTitle">热门活动</text>
             <image class="middleLeftLogo" src="{{logoSrc}}"></image>
         </view>
-        <navigator class="middleRight">
-            <navigator url="/pages/rankList/rankList">
-                <text class="middleRightTitle">查看热榜</text>
-            </navigator>
+        <navigator class="middleRight" url="/pages/rankList/rankList">
+            <text class="middleRightTitle">查看热榜</text>
             <image class="middleLeftTurn" src="{{turn}}"></image>
         </navigator>
     </view>
     <view class="scrollContainer">
-        <scroll-view class="scrollWrapper" scroll-x="true">
+        <scroll-view class="scrollWrapper" scroll-with-animation scroll-x="true" scroll-left="{{left}}">
             <view class="scrollItem" qq:for="{{activeList}}" qq:key="{{index}}">
                 <view class="schoolActiveHead">
                     <view class="schoolActiveHeadLeft">

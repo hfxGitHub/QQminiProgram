@@ -8,16 +8,23 @@
             <image class="rightLogo" src="{{logoUrl}}"></image>
         </view>
     </view>
-    <view class="rank">
-        <view class="loading" qq:if="{{ status === 'loading' }}">加载中...</view>
-        <view class="error" qq:elif="{{ status === 'error' }}">
-            请求出错，向上拉重新刷新
+    <view class="loadingWrapper" qq:if="{{ status === 'loading' }}">
+        <view class="loading">
+            <image class="drawImg" src="/static/img/test.svg" />
+            <image class="loadingImg" src="{{loadingUrl}}" />
         </view>
+    </view>
+    <view class="loadingWrapper" qq:if="{{ status === 'error' }}">
+        <view class="loading">
+            <image class="loadingImg" src="{{errorUrl}}" />
+        </view>
+    </view>
+    <view class="rank" qq:else="{{ status === 'success' }}">
         <view class="rankWrapper">
             <view qq:for="{{list}}" class="wrapper" qq:key="{{index}}">
                 <view class="content">
                     <view class="contentLeft">
-                        <view class="index">{{index}}</view>
+                        <view class="index">{{index+1}}</view>
                         <view class="cir"></view>
                         <image class="contentImg" src="{{item.url}}" />
                     </view>

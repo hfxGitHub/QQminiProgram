@@ -32,6 +32,7 @@ page {
     font-size: 54rpx;
     color: #fff;
     font-weight: bolder;
+    transition: all 0.3s;
 }
 
 .date {
@@ -46,12 +47,38 @@ page {
     background: #fff;
 }
 
-.loading {
+.loadingWrapper {
     text-align: center;
-    height: 50rpx;
-    line-height: 50rpx;
-    font-size: 25rpx;
+    width: 683rpx;
+    margin: 0 auto;
+    margin-top: 42rpx;
+    position: relative;
 }
+
+.loading {
+    margin-top: 238rpx;
+}
+
+@keyframes load{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+
+.drawImg {
+    z-index: 999;
+    animation: load 1.5s infinite linear;
+    position: absolute;
+    left:294rpx;
+    top:29rpx;
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.loadingImg {
+    width: 468rpx;
+    height: 372rpx;
+}
+
 
 .error {
     text-align: center;
@@ -114,7 +141,7 @@ page {
     height: 22rpx;
     background: #FF406E;
     transform: rotate(45deg);
-    top: -5.5rpx;
+    top: -6rpx;
     left: 43rpx; 
 }
 .contentTitle {

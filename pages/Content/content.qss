@@ -49,7 +49,7 @@ swiper-item image {
     text-align: center;
 }
 .deadLine{
-    width:353rpx;
+    /* width:353rpx; */
     height:32rpx;
     font-size:32rpx;
     font-family:思源黑体 CN Normal;
@@ -98,6 +98,7 @@ swiper-item image {
 .activityContent{
     width:750rpx;
     margin-bottom: 122rpx;
+    min-height: 620rpx;
     background:rgba(255, 255, 255, 1);
 }
 
@@ -117,21 +118,22 @@ swiper-item image {
 }
 .backHomeBtn{
     width:250rpx;
-    height: 72rpx;
+    height: 88rpx;
     background: rgba(222, 222, 222, 0.32);
     margin: 16rpx 0 auto 44rpx;
-    padding-top: 16rpx;
+    /* padding-top: 16rpx; */
 }
 
 .backHomeBtnContent{
     display: block;
     width:120rpx;
-    height:30rpx;
+    height:88rpx;
     font-size:30rpx;
     font-family:思源黑体 CN Normal;
     font-weight:400;
     color:rgba(0,0,0,1);
-    line-height:45rpx;
+    line-height:88rpx;
+    text-align: center;
     margin: 0 auto auto 65rpx;
 }
 .joinNowContent{
