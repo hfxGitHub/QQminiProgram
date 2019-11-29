@@ -1,5 +1,4 @@
 {
     "usingComponents": {},
-    "navigationBarTitleText": "活动热榜",
-    "enablePullDownRefresh":true
+    "navigationBarTitleText": "活动热榜"
 }

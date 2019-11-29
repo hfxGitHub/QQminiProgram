@@ -2,7 +2,8 @@
     <view class="head">
         <view class="left">
             <view class="title">排行榜</view>
-            <view class="date">数据更新于{{date}}</view>
+            <view class="date">西南科技大学校园社团活动详情</view>
+
         </view>
         <view class="right">
             <image class="rightLogo" src="{{logoUrl}}"></image>
@@ -20,19 +21,19 @@
         </view>
     </view>
     <view class="rank" qq:else="{{ status === 'success' }}">
-        <view class="rankWrapper">
-            <view qq:for="{{list}}" class="wrapper" qq:key="{{index}}">
-                <view class="content">
+        <view class="{{rankWrapper ? 'rankWrapper': ''}}">
+            <view qq:for="{{list}}" qq:key="{{index}}" class="wrapper">
+                <view class="content" data-link="{{item.link}}" bindtap="join">
                     <view class="contentLeft">
                         <view class="index">{{index+1}}</view>
                         <view class="cir"></view>
-                        <image class="contentImg" src="{{item.url}}" />
+                        <image class="contentImg" src="{{item.url}}" mode="aspectFill"/>
                     </view>
                     <view class="contentRight">
                         <view class="contentTitle">{{item.title}}</view>
                         <view class="contentDown">
                             {{item.auto}}
-                            <button class="joinIn" bindtap="join">立即参加</button>
+                            <button data-link="{{item.link}}" class="joinIn" bindtap="join">立即参加</button>
                         </view>
                     </view>
                 </view>

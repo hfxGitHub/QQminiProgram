@@ -1,7 +1,6 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
     "pages/rankList/rankList",
     "pages/home/home",
     "pages/Content/content",
@@ -14,6 +13,7 @@
     "navigationBarTextStyle":"black"
   },
   "groupIdList": [
-    "695628567"
+    "695628567",
+    "957361810"
   ]
 }

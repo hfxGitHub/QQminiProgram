@@ -1,5 +1,7 @@
 const app = getApp()
 let localUlr = app.globalData.localUrl
+let id = app.globalData.id
+
 Page({
     data: {
         Gamma: 0,
@@ -14,28 +16,34 @@ Page({
         turn: '/static/img/turn.svg',
         whiteTurn: '/static/img/0000.svg',
         activeList: [],
-        activityList: []
+        activityList: [],
+        activityIndex: 1,
+        isAll: false
     },
     onLoad() {
+        let token = qq.getStorageSync('token')
         let that = this
-        let { activityUrl, bannerUrl, activeUrl } = this.data
+        let { activityUrl, bannerUrl, activeUrl, activityIndex } = this.data
         //获取校园活动数据
         qq.request({
             url: activityUrl,
             method: 'post',
             data: {
-                page_num: 1,
-                page_count: 10
+                page_num: activityIndex,
+                page_count: 10,
+                token
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(res) {
-                console.log(res)
                 let { data, result } = res.data
                 if(result) {
+                    data.reverse()
                     data = data.map(item => {
                         let { date_start, date_end, id, name, tag, association, poster } = item
+                        tag = tag.map(v => v.name)
+                        let logo = localUlr + association.icon
                         return {
                             data_start: date_start,
                             data_end: date_end,
@@ -43,7 +51,7 @@ Page({
                             content: name,
                             title: association.name,
                             imgUrl: localUlr + poster[0],
-                            logoUrl: association.icon || '/static/img/社团默认.svg',
+                            logoUrl: logo === localUlr || /heic$/i.test(logo) ? '/static/img/default.svg' : logo,
                             url: '/pages/introduction/introduction?id=' + association.id,
                             link: '/pages/Content/content?id=' + id
                         }
@@ -61,21 +69,23 @@ Page({
             method: 'post',
             data: {
                 page_num: 1,
-                page_count: 5
+                page_count: 5,
+                token
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(res) {
                 let { data, result } = res.data
-                console.log(res)
                 if(result) {
+                    data.reverse()
                     data = data.map(item => {
                         let { id, name, poster, association } = item
+                        let icon =  localUlr + association.icon
                         return {
                             url: '/pages/introduction/introduction?id=' + association.id,
                             link: '/pages/Content/content?id=' + id,
-                            logoUrl: association.icon || '/static/img/社团默认.svg',
+                            logoUrl: icon === '' || /heic$/i.test(icon) ? '/static/img/default.svg' : icon,
                             imgUrl: localUlr + poster[0],
                             title: association.name,
                             content: name
@@ -84,48 +94,6 @@ Page({
                     that.setData({
                         activeList: data,
                         left: 0
-                    }, () => {
-                        /*//获取到数据后开始监听陀螺仪
-                        qq.startGyroscope({
-                            interval: 'ui'
-                        })
-
-                        qq.onGyroscopeChange(res => {
-                            let { x, y, z } = res
-                            let { left, Y } = that.data
-                            if(y > 5 && Math.abs(Y - y) > 3) {
-                                that.setData({
-                                    left: left + 10,
-                                    Y: y,
-                                })
-                            } else if(y < 5 && Math.abs(Y - y) > 3) {
-                                that.setData({
-                                    left: left - 10,
-                                    Y: y,
-                                })
-                            } else {
-                                
-                            }
-                        })*/
-                        /*qq.startDeviceMotionListening({
-                            interval: 'ui'
-                        })
-                        qq.onDeviceMotionChange(res => {
-                            let { left, Gamma } = that.data
-                            let { gamma } = res
-                            console.log(gamma)
-                            if(Gamma - gamma > 0.1) {
-                                that.setData({
-                                    left: left + 20,
-                                    Gamma: gamma
-                                })
-                            } else if( Gamma - gamma < -0.1 ) {
-                                that.setData({
-                                    left: left - 20,
-                                    Gamma: gamma
-                                })
-                            }
-                        })*/
                     })
                 }
             }
@@ -135,15 +103,91 @@ Page({
         //获取首页轮播图
         qq.request({
             url: bannerUrl,
-            method: 'post',
+            method: 'get',
+            data: {
+                token
+            },
             success(res) {
                 let { data, result } = res.data
-                console.log(res)
+                
                 if(result) {
+                    data = data.map(item => {
+                        item.img = localUlr + item.img
+                        return item
+                    })
                     that.setData({
                         banner: data
                     })
                 }
+            }
+        })
+        qq.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+          })
+    },
+    onReachBottom() {
+        if(this.data.isAll) {
+            return
+        } 
+        let token = qq.getStorageSync('token')
+        qq.showLoading({
+            title: '加载中',
+        })
+        let { activityIndex, activityUrl } = this.data
+        let that = this
+        activityIndex++
+        qq.request({
+            url: activityUrl,
+            method: 'post',
+            data: {
+                page_num: activityIndex,
+                page_count: 10,
+                token
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res) {
+                let { data, result } = res.data
+                if(result) {
+                    data.reverse()
+                    if(data.length === 0) {
+                        qq.hideLoading()
+                        that.setData({
+                            isAll: true
+                        })
+                        return 
+                    }
+                    data = data.map(item => {
+                        let { date_start, date_end, id, name, tag, association, poster } = item
+                        tag = tag.map(v => v.name)
+                        let logo = localUlr + association.icon
+                        
+                        return {
+                            data_start: date_start,
+                            data_end: date_end,
+                            tag,
+                            content: name,
+                            title: association.name,
+                            imgUrl: localUlr + poster[0],
+                            logoUrl: logo === localUlr || /heic$/i.test(logo) ? '/static/img/default.svg' : logo,
+                            url: '/pages/introduction/introduction?id=' + association.id,
+                            link: '/pages/Content/content?id=' + id
+                        }
+                    })
+                    qq.hideLoading()
+                    that.setData({
+                        activityList: [...that.data.activityList, ...data],
+                        activityIndex
+                    })
+                }
+            },
+            fail(res) {
+                qq.showToast({
+                    title: '出错了',
+                    icon: 'none',
+                    duration: 2000
+                  })
             }
         })
     },

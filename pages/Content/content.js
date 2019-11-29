@@ -1,15 +1,11 @@
 const app = getApp()
+let localUlr = app.globalData.localUrl
 Page({
     data: {
-        baseUrl:'http://173.82.115.226:8080/api',
         choseId:'',
         _nowImg:0,
         toHome:'../home/home',
-        imgUrls:[
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574183365280&di=42d1ef360de91c9b1c993e249b4ffd11&imgtype=0&src=http%3A%2F%2Fimg66.hbzhan.com%2F9%2F20170208%2F636221461533481693811.png',
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574252408321&di=19d25d101524cb81d21ef52d0266bb15&imgtype=0&src=http%3A%2F%2Fwww.coolzou.com%2Fphoto%2F2011%2F12%2F22%2Fsite_538.jpg',
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574252408321&di=19d25d101524cb81d21ef52d0266bb15&imgtype=0&src=http%3A%2F%2Fwww.coolzou.com%2Fphoto%2F2011%2F12%2F22%2Fsite_538.jpg'
-        ],//bannar图的链接数组
+        imgUrls:[],//bannar图的链接数组
         contentImgUrls:[],//海报的链接数组
         indicatorDots: true, //是否显示面板指示点
         autoplay: true, //是否自动切换
@@ -21,44 +17,103 @@ Page({
         data_start:'暂无更多信息~',
         tag:[],
         association:{
-            associationName:'暂无更多信息~',
-            associationImgUrl:'',
-            associationImgUrl:'',
-            id: '',
-
+            name:'暂无更多信息呦~'
         },
-        Number:'',
+        Number:'?',
         groupId:'',
+        isStudent:false,
+        list:[],
     },
-    onReady: function () {
+    onLoad: function (e) {
+        let token = qq.getStorageSync('token') 
+        const that = this;
+        qq.request({
+            url: localUlr +  '/api/studentCertify',
+            method:'GET',
+            data: {
+                token
+            },
+            success(res) {
+                if(res.data.result) {
+                    that.setData({
+                        isStudent:true,
+                    })
+                }
+            }
+        })
         this.animation = qq.createAnimation({
             "duration":300,
         })
         this.setData({
             bottomBtnHeight:125 / 750 * qq.getSystemInfoSync().windowWidth
         })
-        const that = this;
-        var pages = getCurrentPages();
-        var cuurrentPage = pages[pages.length-1];
-        var option = cuurrentPage.options;
         this.setData({
-            choseId:option.id,
-        })  
+            choseId:e.id==undefined?e.contentid:e.id,
+        })
         qq.request({
-            url:that.data.baseUrl + '/queryActivity?activity_id='+this.data.choseId,
-            method:'POST',
+            url:localUlr + '/api/queryActivity?activity_id='+this.data.choseId + '&token=' + token,
+            method:'GET',
             success(res){
                 var data = res.data.data;
-                console.log(data);
                 for(var i = 0;i<data.poster.length;i++){
-                    data.poster[i] = that.data.baseUrl+data.poster[i];
+                    data.poster[i] = localUlr+data.poster[i];
+                }
+                data.association.icon=localUlr+data.association.icon;
+                if(/heic$/i.test(data.association.icon)) {
+                    data.association.icon = '/static/img/default.svg'
                 }
                 that.setData({
                     activityName:data.name==undefined?'暂无更多信息~':data.name,
                     data_start:(data.date_start==undefined?'暂无更多信息':data.date_start)+'~'+(data.date_end==undefined?'':data.date_end),
                     association:data.association==undefined?'暂无更多信息~':data.association,
                     contentImgUrls:data.poster==undefined?[]:data.poster,
-                    groupId:data.qq_group==undefined?'':data.qq_group,
+                    // imgUrls:data.file==undefined?[]:data.file,
+                    // groupId:data.qq_group==undefined?'':data.qq_group,
+                    tag:data.tag,
+                    imgUrls:localUlr+data.file,
+                })
+            }
+        })
+        qq.request({
+            url: localUlr + '/api/hot/activity/getList',
+            method: 'GET',
+            data: {
+                page_num: 1,
+                page_count: 10,
+                token
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res) {
+                let { data, result } = res.data
+                if(result) {
+                    let hotNumber;
+                    data.map((item,index) => {
+                        if(item.id == that.data.choseId){
+                            hotNumber = index + 1;
+                        }
+                    })
+                    that.setData({
+                        Number:hotNumber==undefined?'?':hotNumber,
+                    })
+                }
+            }
+        })
+        qq.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true,
+          })
+    },
+    onShareAppMessage:function () {
+        return({
+            title:this.data.activityName,
+            imageUrl:this.data.contentImgUrls[0],
+            path:'/pages/Content/content?contentid='+this.data.choseId,
+            fail: res => {
+                qq.showToast({
+                    title:'出错啦，请重试呦~',
+                    icon:'none',
                 })
             }
         })
@@ -77,7 +132,7 @@ Page({
     onTapBanarImg: function (ev) {
         qq.previewImage({
             current: ev.target.dataset.imgsrc,
-            urls: this.data.imgUrls,
+            urls: this.data.contentImgUrls,
             success: (result)=>{
             },
             fail: ()=>{},
@@ -87,11 +142,40 @@ Page({
     onTapPoster: function (ev) {
         qq.previewImage({
             current: ev.target.dataset.imgsrc,
-            urls: this.data.contentImgUrls,
+            urls: [],
             success: (result)=>{
             },
             fail: ()=>{},
             complete: ()=>{}
         });
+    },
+    viewActivityGroup: function (e) {
+        let token = qq.getStorageSync("token");
+        let id = qq.getStorageSync('id') 
+        qq.request({
+            url:localUlr+'/api/hot/activity/viewActivityGroup',
+            method:'GET',
+            data:{
+                activity_id:this.data.choseId,
+                user_id: id,
+                token:token,
+            },
+            success(res){
+            }
+        })
+    },
+    backIndex() {
+        qq.showToast({
+            title:'请先认证学生身份呦~',
+            icon:'none',
+        })
+        qq.redirectTo({
+            url:'../index/index'
+        })
+    },
+    backHome() {
+        qq.reLaunch({
+            url:'../home/home',
+        })
     }
 })

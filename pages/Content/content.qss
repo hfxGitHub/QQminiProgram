@@ -7,6 +7,12 @@ swiper{
 swiper-item image {
     width: 750rpx;
     height: 425rpx;
+    /* background-size: cover; */
+    /* background-position: center; */
+}
+swiper-item{
+    background-size: cover;
+    background-position: center;
 }
 .activityTitle{
     background:white;
@@ -38,15 +44,15 @@ swiper-item image {
 }
 .IdName{
     display:block;
-    width:248rpx;
-    height:37rpx;
-    margin-top:7rpx;
+   /* width:248rpx;*/
+    height:44rpx;
+    /* margin-top:7rpx; */
     margin-left:8rpx;
-    line-height: 28rpx;
+    line-height: 44rpx;
     color:white;
     font-size:20rpx;
-    margin-right: 2rpx;
-    text-align: center;
+    /*margin-right: 10rpx;*/
+    /* text-align: center; */
 }
 .deadLine{
     /* width:353rpx; */
@@ -61,12 +67,16 @@ swiper-item image {
 }
 .TipsContent{
     display:block;
-    width:150rpx;
-    height:46rpx;
-    border:1rpx solid rgba(210, 210, 210, 1);
+    height:48rpx;
+    width: 152rpx;
+    border:1rpx solid rgba(210,210,210,1);
     margin-right:22rpx;
     font-size:28rpx;
-    line-height:46rpx;
+    color:rgba(0,0,0,1);
+    font-family:SourceHanSansCN-Light,SourceHanSansCN;
+    font-weight:300;
+    letter-spacing:1px;
+    line-height:48rpx;
     text-align:center;
 }
 

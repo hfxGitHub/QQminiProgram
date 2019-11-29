@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>编组 2备份</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-1首页（改热门）" transform="translate(-32.000000, -412.000000)">
+            <g id="编组-10" transform="translate(32.000000, 408.000000)">
+                <g id="编组-2备份" transform="translate(39.000000, 43.000000) rotate(-330.000000) translate(-39.000000, -43.000000) translate(11.000000, 15.000000)">
+                    <rect id="矩形" fill="#FFFFFF" x="0" y="0" width="56" height="56"></rect>
+                    <polygon id="矩形" fill="#F3F4F4" transform="translate(28.000000, 28.000000) rotate(-270.000000) translate(-28.000000, -28.000000) " points="3 28.009817 15.5425486 7.01963395 40.5255291 7 53 28.009817 40.4914903 49 15.5085097 49"></polygon>
+                    <polygon id="矩形备份-3" fill="#F3F4F4" transform="translate(27.500000, 28.000000) rotate(-270.000000) translate(-27.500000, -28.000000) " points="6 28.0093495 16.7865918 8.018699 38.2719551 8 49 28.0093495 38.2426816 48 16.7573184 48"></polygon>
+                    <g id="编组" transform="translate(28.630939, 27.746167) rotate(-90.000000) translate(-28.630939, -27.746167) translate(17.130939, 16.246167)" fill="#C70D3A">
+                        <rect id="矩形" x="2.69033531" y="5.26495726" width="17.1203156" height="1.91452991"></rect>
+                        <rect id="矩形备份-4" x="6.84812623" y="0" width="8.56015779" height="1.91452991"></rect>
+                        <rect id="矩形备份-5" x="6.84812623" y="21.0598291" width="8.56015779" height="1.91452991"></rect>
+                        <rect id="矩形备份-2" x="3.17948718" y="15.7948718" width="17.1203156" height="1.91452991"></rect>
+                        <rect id="矩形备份" x="0" y="10.5299145" width="22.2564103" height="1.91452991"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

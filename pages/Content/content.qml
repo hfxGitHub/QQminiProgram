@@ -8,9 +8,9 @@
     interval="{{interval}}" 
     duration="{{duration}}"
     >
-        <block wx:for="{{imgUrls}}" wx:key="unique2">
-            <swiper-item>
-                <image src="{{item}}" data-imgsrc="{{item}}" bindtap="onTapBanarImg"/>
+        <block>
+            <swiper-item qq:for="{{contentImgUrls}}" qq:key="{{index}}">
+                <image src="{{item}}" data-imgsrc="{{item}}" mode="aspectFill" bindtap="onTapBanarImg"/>
             </swiper-item>
         </block>
     </swiper>
@@ -24,34 +24,31 @@
             <view class="nowNumber">当前排行</view>
         </view>
         <view class="IdCard">
-            <image class='IdImg' src="{{association.associationImgUrl}}"/>
+            <image class='IdImg' src="{{association.icon}}"/>
             <navigator url="/pages/introduction/introduction?id={{association.id}}">
-                <view style="width:296rpx;height:44rpx;background:rgba(199, 13, 58, 1);display:flex;">
-                    <text class="IdName">{{association.associationName}}</text>
-                    <image src="/static/img/0000.svg" style="height:14rpx;width:10.7rpx;margin-top:14rpx;margin-left:2rpx;"></image>
+                <view style="min-width:100rpx;padding-right:15rpx;height:44rpx;background:rgba(199, 13, 58, 1);display:flex;">
+                    <text class="IdName">{{association.name}}</text>
+                    <image src="/static/img/0000.svg" style="height:14rpx;width:10.7rpx;margin-top:15rpx;margin-left:2rpx;"></image>
                 </view>
             </navigator>
         </view>
         <view class="deadLine">{{data_start}}</view>
         <view class="Tips">
-            <text class="TipsContent">十佳社团</text>
-            <text class="TipsContent">十佳社团</text>
-            <text class="TipsContent">十佳社团</text>
+            <text class="TipsContent" qq:for="{{tag}}" qq:key="{{index}}">{{item.name}}</text>
         </view>
     </view>
 
     <view class="activityContent">
-        <view qq:for="{{contentImgUrls}}" qq:key="{{index}}">
-            <image src="{{item}}" data-imgsrc="{{item}}" bindtap="onTapPoster" mode="scaleToFill" style="width:100%;"></image>
+        <view>
+            <image src="{{imgUrls}}" data-imgsrc="{{imgUrls}}" mode="widthFix" style="width:100%;"></image>
         </view>
     </view>
     
     <view class="joinBtn {{fixedBtn==1?'fixedOnBottom':''}}">
-        <navigator url="{{toHome}}">
-            <view class="backHomeBtn">
-                <text class="backHomeBtnContent">精彩首页</text>
-            </view>
-        </navigator>
-        <button class="joinNowContent" open-type="openGroupProfile" group-id="{{groupId}}">立即参加</button>
+        <view class="backHomeBtn" bindtap="backHome">
+            <text class="backHomeBtnContent">精彩首页</text>
+        </view>
+        <button hidden="{{!isStudent}}" class="joinNowContent"  bindtap="viewActivityGroup" open-type="openGroupProfile" group-id="957361810" >立即参加</button>
+        <button hidden="{{isStudent}}" class="joinNowContent" bindtap="backIndex">立即参加</button>
     </view>
 </view>

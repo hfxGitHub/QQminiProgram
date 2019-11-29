@@ -119,7 +119,7 @@ page {
     position: absolute;
     left: 0;
     top: 0;
-    box-shadow:2px 2px 5px 0px rgba(0,0,0,0.25);
+    box-shadow:2px 2px 4px 0px rgba(0,0,0,0.25);
 
 }
 .index {
@@ -157,10 +157,13 @@ page {
     line-height: 50rpx;
     margin-top: 50rpx;
     color: #878787;
-    font-size: 28rpx;
+    font-size: 22rpx;
     overflow: hidden;
 }
+
 .joinIn {
+    margin-right: 20rpx;
+    margin-top: 5rpx;
     width: 140rpx;
     height: 43rpx;
     background: #C70D3A;
@@ -168,8 +171,6 @@ page {
     float: right;
     line-height: 43rpx;
     font-size: 20rpx;
-    margin-right: 20rpx;
-    margin-top: 5rpx;
     border-radius: 1rpx;
     padding: 0;
 }

@@ -5,10 +5,14 @@
     height:425rpx;
     width:750rpx;
 }
+.backgroundIMG{
+    transform: translateY(-435rpx);
+    margin-bottom: -426rpx;
+}
 .wrap-mask{
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.3);
+    background:rgba(0,0,0,0.2);
 }
 #introductionTab{
     font-size:32rpx;
@@ -50,10 +54,12 @@
     border-radius:1rpx
 }
 .backImg{
-    height:16.8rpx;
-    width:10.7rpx;
-    margin-top:16rpx;
-    margin-left:10rpx;
+    width: 15rpx;
+    height: 20rpx;
+    margin-top:14rpx;
+    margin-left:8rpx;
+    margin-right:12rpx;
+    transform: rotate(180deg);
 }
 .backHomeContent{
     font-size:20rpx;
@@ -62,8 +68,7 @@
     text-align:center;
     background:rgba(199, 13, 58, 1);
     color:rgba(255, 255, 255, 1);
-    /* padding-top:10rpx; */
-    margin-left:17rpx;
+    padding:0;
     line-height:48rpx;
     font-family:PingFang SC Bold;
 }
@@ -89,9 +94,11 @@
     font-size:22rpx;
     text-align:center;
     margin-top:14rpx;
+    width: 150%;
+    transform: translateX(-69rpx);
 }
 .introductionContent{
-    min-height: 650rpx;
+    min-height: 740rpx;
     background:#F6F6F6;
     padding-top:47rpx;
 }
@@ -161,7 +168,7 @@
 
 .errorView{
     width: 100%;
-    margin:100rpx auto 0 auto;
+    margin:100rpx auto 16rpx auto;
 }
 
 .latestActivity{
@@ -182,6 +189,7 @@
     margin:35rpx 0 34rpx 26rpx;
 }
 .activityText{
+    position: relative;
     width:414rpx;
     margin-left:27rpx;
 }
@@ -200,14 +208,15 @@
     color:rgba(0, 0, 0, 1);
     font-family:"思源黑体 CN Light";
     margin-right:10rpx;
+    margin-top: 24rpx;
 }
 .latestActivityTime{
+    position: absolute;
+    bottom: 24rpx;
     display:block;
     font-size:20rpx;
     font-family:"思源黑体 CN Normal";
-    magin-left:313rpx;
-    margin-right:13rpx;
-    margin-top:36rpx;
+    right: 13rpx;
     text-align:right;
 }
 

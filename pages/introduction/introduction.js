@@ -1,11 +1,9 @@
+const app = getApp()
+let localUlr = app.globalData.localUrl
 Page({
     data:{
-        baseUrl:'http://173.82.115.226:8080',
         choseId:'',
-        toContent: '/pages/Content/content',
         toHome: '/pages/home/home',
-        text:"协会介绍",
-        src:"1.png",
         _active:1,
         animation:{},
         scrollTop:false,
@@ -23,53 +21,72 @@ Page({
         touchDot:0,
         nth:0,
     },
-    onReady: function () {
+    onLoad: function (e) {
         this.animation = qq.createAnimation({
             "duration":300,
         })
         this.setData({
-            backImgHeight:425 / 750 * qq.getSystemInfoSync().windowWidth
+            backImgHeight:425 / 750 * qq.getSystemInfoSync().windowWidth,
         })
         const that =this;
-        var pages = getCurrentPages();
-        var cuurrentPage = pages[pages.length-1];
-        var option = cuurrentPage.options;
         this.setData({
-            choseId:option.id,
+            choseId:e.id==undefined?e.introductionid:e.id,
         })          
+        let token = qq.getStorageSync('token')  
         qq.request({
-            url: this.data.baseUrl + '/api/queryAssociation?association_id='+this.data.choseId,
-            method:'POST',
+            url: localUlr + '/api/queryAssociation?association_id='+this.data.choseId + '&token=' + token,
+            method:'GET',
             success(res){
                 var data = res.data.data;
-                var str = data.brand_activity.replace(/\n/g,"|-&");
-                var acticityData = str.split("|-&");
+                var str,acticityData
+                if(data.brand_activity) {
+                    str = data.brand_activity.replace(/\n/g,"|-&");
+                    acticityData = str.split("|-&");
+                }
                 that.setData({
                     AssociationName:data.name==undefined?'暂无更多信息~':data.name,
                     AssociationSlogan:data.introduction==undefined?'暂无更多信息~':data.introduction,
                     TimeContent:data.create_date==undefined?'暂无更多信息~':data.create_date,
                     belongToContent:data.affiliated_unit==undefined?'暂无更多信息~':data.affiliated_unit,
                     aimToContent:data.purpose==undefined?'暂无更多信息~':data.purpose,
-                    backgroundImg:that.data.baseUrl+data.img_bg,
-                    famousActivityContent:acticityData,
+                    backgroundImg:localUlr+data.img_bg,
+                    famousActivityContent:acticityData ? acticityData : ['暂无更多信息'],
                 })
             }
         })
         qq.request({
-            url: this.data.baseUrl + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num=1&page_count=10',
+            url: localUlr + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num=1&page_count=10' + '&token=' + token,
             method:'POST',
             success(res){
                 var data = res.data.data;
+                data.reverse()
                 for(var i = 0;i<data.length;i++){
-                    data[i].file = that.data.baseUrl + data[i].file;
+                    data[i].file = localUlr + data[i].file;
                     for(var j = 0;j<data[i].poster.length;j++){
-                        data[i].poster[j] = that.data.baseUrl + data[i].poster[j];
+                        data[i].poster[j] = localUlr + data[i].poster[j];
                     }
                 }
                 that.setData({      
                     acticityData:data,
                     noActicity:data.length==0?true:false,
                 })                
+            }
+        })
+        qq.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true,
+          })
+    },
+    onShareAppMessage:function () {
+        return({
+            title:this.data.AssociationName,
+            imageUrl:this.data.backgroundImg,
+            path:'/pages/introduction/introduction?introductionid=' + this.data.choseId,
+            fail: res => {
+                qq.showToast({
+                    title:'出错啦，请重试呦~',
+                    icon:'none',
+                })
             }
         })
     },
@@ -95,8 +112,8 @@ Page({
         })
     },
     backHomePage: function () {
-        qq.navigateBack({
-            url:'../index/index',
+        qq.reLaunch({
+            url:'../home/home',
         })
     },
 
@@ -125,6 +142,5 @@ Page({
                 nth:0,
             })
         }
-
     }
 })

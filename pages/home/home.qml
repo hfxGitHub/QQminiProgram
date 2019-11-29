@@ -19,7 +19,7 @@
     <view class="opinionWrapper">
         <view class="opinionContainer">
             <view class="opinionContainerLogoWrapper">
-                <image class="opinionContainerLogo" src="/static/img/advice.png" />
+                <image class="opinionContainerLogo" src="/static/img/qwer.svg" />
             </view>
             <text class="opinionContainerText">了解蜂拥更多信息、提供意见反馈</text>
             <button 
@@ -48,12 +48,12 @@
                     </view>
                     <navigator class="schoolActiveHeadRight" url="{{item.url}}">
                         <text>{{item.title}}</text>
-                        <image class="schoolActiveHeadRightTurn"  src="{{whiteTurn}}"></image>
+                        <image class="schoolActiveHeadRightTurn" src="{{whiteTurn}}"></image>
                     </navigator>
                 </view>
                 <navigator url="{{item.link}}">
                     <view class="scrollItemImgWrapper">
-                        <image class="scrollItemImg" src="{{item.imgUrl}}" />
+                        <image class="scrollItemImg" mode="aspectFill" src="{{item.imgUrl}}" />
                     </view>
                     <view class="itemContent">
                         {{item.content}}
@@ -76,8 +76,8 @@
                     </navigator>
                 </view>
                 <navigator  class="schoolActiveContentWrapper" url="{{item.link}}">
-                    <view class="schoolActiveContentWrapperRight">
-                        <image class="schoolActiveContentWrapperRightImg" src="{{item.imgUrl}}"></image>
+                    <view class="schoolActiveContentWrapperRight" >
+                        <image class="schoolActiveContentWrapperRightImg" mode="aspectFill" src="{{item.imgUrl}}"></image>
                     </view>
                     <view class="schoolActiveContentWrapperLeft">
                         <view class="schoolActiveContentWrapperLeftTitle">{{item.content}}</view>

@@ -7,7 +7,7 @@ page {
 }
 .container {
   min-height: 100%;
-  background-image: linear-gradient(#C70D3A, #FF3D54);
+  background-image: linear-gradient(#F24740, #C70D3A);
   position: relative;
 }
 .loading {
@@ -107,23 +107,52 @@ page {
   color: #D8D8D8;
   font-weight: normal;
 }
-.br {
+.brWrapper {
+  position: relative;
   margin-top: 18rpx;
+  height: 1px;
+}
+
+.br {
+  width: 100%;
+  position: absolute;
   height: 1px;
   background: #000;
   filter: opacity(0.1);
 }
+
+.brFocus {
+  height: 1px;
+  z-index: 999;
+  transition: all 0.3s;
+  position: absolute;
+  width: 0;
+  background: #2d132c;
+}
+
+.nowFocus {
+  width: 100%;
+}
+
 .left {
   width: 273rpx;
   float: left;
 }
 .right {
+  z-index: 999;
   float: right;
   width: 188rpx;
   height: 80rpx;
   background: #979797;
   margin-top: 77rpx;
 }
+
+.verCode {
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
 .btn {
   width: 542rpx;
   height: 88rpx;
@@ -140,8 +169,8 @@ page {
 }
 .onlyLookBtn {
   width: 60%;
-  color: #D8D8D8;
-  font-size: 24rpx;
+  color: #ACACAC;
+  font-size: 28rpx;
   height: 30rpx;
   background: #fff;
   line-height: 30rpx;

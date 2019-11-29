@@ -3,33 +3,225 @@
 const app = getApp()
 let localUlr = app.globalData.localUrl
 Page({
-  data: {
-    url: localUlr + '/api/login',
-    login: false,
-    logoSrc: '/static/img/0-1-1.svg',
-    logo2Src: '/static/img/0-1-2.svg',
-    loadingSrc: '/static/img/loading.gif'
-  },
-  onLoad() {
-    //获取密码缓存
-    const res = qq.getStorageInfoSync()
-    //获取验证码
-    /*qq.request({
-      url: 'http://cas.swust.edu.cn/authserver/captcha',
-      success(res) {
-        console.log(res)
-      }
-    })*/
-  },
-  submit(e) {
-    console.log(e.detail.value)
-    /*this.setData({
-      login: true
-    })*/
-    /*qq.reLaunch({
-      //url: '../rankList/rankList',
-      url: '/pages/rankList/rankList'
-    })*/
-
-  }
+	data: {
+		idIsFocus: false,
+		passWdIsFocus: false,
+		codeIsFocus: false,
+		login: false,
+		logoSrc: '/static/img/0-1-1.svg',
+		logo2Src: '/static/img/0-1-2.svg',
+		loadingSrc: '/static/img/loading.gif',
+		verCode: ''
+	},
+	onLoad(e) {
+		let that = this;
+		let p = new Promise((resp, rej) => {
+			qq.login({
+				success(res) {
+					//如果token不存在或者过期就请求token
+					if (res.code) {
+						qq.request({
+							url: localUlr + '/api/login',
+							data: {
+								code: res.code,
+								client: 'qq'
+							},
+							success(res) {
+								let { result, token } = res.data
+								let User = res.data.user
+								let id = User.user_id
+								if (result) {
+									qq.setStorageSync("token", token)
+									qq.setStorageSync("id", id)
+								}
+								resp(token)
+								let { user } = res.data
+								if(e){
+									if(e.introductionid){
+										qq.redirectTo({
+											url: '/pages/introduction/introduction?id='+e.introductionid
+										})
+										return;
+									}
+									if(e.contentid){
+										qq.redirectTo({
+											url: '/pages/Content/conetent?id='+e.contentid
+										})
+										return;
+									}
+								}
+								if(user.student_certify) {
+									qq.redirectTo({
+										url: '/pages/home/home'
+									})
+								}
+							}
+						})
+					}
+				}
+			})
+		})
+		p.then(res => {
+			let token = qq.getStorageSync('token')
+			//获取验证码
+			qq.request({
+				url: localUlr + '/api/studentCertify/preLogin',
+				data: {
+					token,
+					client: 'qq' 
+				},
+				success(res) {
+					let { result, captcha } = res.data
+					if(result && typeof captcha !== 'undefined') {
+						captcha = captcha.replace(/[\r\n]/g,"")
+						let base64Data = 'data:image/jpg;base64,' + captcha
+						that.setData({
+							verCode: base64Data
+						})
+					}
+				}
+			})
+		})
+		
+	},
+	submit(e) {
+		let token = qq.getStorageSync('token')
+		var that = this;
+		qq.showLoading({
+			title: '登录中'
+		})
+		let {
+			id,
+			passwd,
+			verCode,
+		} = e.detail.value
+		qq.request({
+			url: localUlr + '/api/studentCertify/login',
+			method: 'get',
+			data: {
+				username: id,
+				password: passwd,
+				captcha: verCode,
+				token
+			},
+			success(res) {
+				console.log(res)
+				qq.hideLoading()
+				let {
+					result,
+					id,
+					username,
+					nickname,
+					permission
+				} = res.data
+				console.log(res)
+				if (result) {
+					qq.showToast({
+						title: '登录成功',
+						icon: 'success',
+						duration: 2000
+					})
+					app.globalData.id = id
+					qq.redirectTo({
+						url: '/pages/home/home'
+					})
+				} else {
+					//弹出密码错误消息
+					qq.showToast({
+						title: '账号或密码错误',
+						icon: 'none',
+						duration: 2000
+					})
+					//如果密码错误重新申请验证码
+					let token = qq.getStorageSync('token')
+					//获取验证码
+					qq.request({
+						url: localUlr + '/api/studentCertify/preLogin',
+						data: {
+							token,
+							client: 'qq' 
+						},
+						success(res) {
+							let { result, captcha } = res.data
+							if(result && typeof captcha !== 'undefined') {
+								captcha = captcha.replace(/[\r\n]/g,"")
+								let base64Data = 'data:image/jpg;base64,' + captcha
+								that.setData({
+									verCode: base64Data
+								})
+							}
+						}
+					})
+				}
+			}
+		})
+		qq.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+          })
+	},
+	againVerCode() {
+		let that = this
+		let token = qq.getStorageSync('token')
+		//获取验证码
+		qq.request({
+			url: localUlr + '/api/studentCertify/preLogin',
+			data: {
+				token,
+				client: 'qq' 
+			},
+			success(res) {
+				let { result, captcha } = res.data
+				if(result && typeof captcha !== 'undefined') {
+					captcha = captcha.replace(/[\r\n]/g,"")
+					let base64Data = 'data:image/jpg;base64,' + captcha
+					that.setData({
+						verCode: base64Data
+					})
+				}
+			}
+		})
+	},
+	//学号聚焦时触发
+	idFocus() {
+		this.setData({
+			idIsFocus: true
+		})
+	},
+	idBlur(e) {
+		let val = e.detail.value
+		if (val === '') {
+			this.setData({
+				idIsFocus: false
+			})
+		}
+	},
+	//密码
+	passWdFocus() {
+		this.setData({
+			passWdIsFocus: true
+		})
+	},
+	passWdBlur(e) {
+		let val = e.detail.value
+		if (val === '') {
+			this.setData({
+				passWdIsFocus: false
+			})
+		}
+	},
+	//验证码
+	codeFocus() {
+		this.setData({
+			codeIsFocus: true
+		})
+	},
+	codeBlur(e) {
+		let val = e.detail.value
+		if (val === '') {
+			this.setData({
+				codeIsFocus: false
+			})
+		}
+	}
 })
+
