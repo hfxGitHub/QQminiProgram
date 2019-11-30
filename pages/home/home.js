@@ -20,110 +20,165 @@ Page({
         activityIndex: 1,
         isAll: false
     },
-    onLoad() {
-        let token = qq.getStorageSync('token')
-        let that = this
-        let { activityUrl, bannerUrl, activeUrl, activityIndex } = this.data
-        //获取校园活动数据
-        qq.request({
-            url: activityUrl,
-            method: 'post',
-            data: {
-                page_num: activityIndex,
-                page_count: 10,
-                token
-            },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success(res) {
-                let { data, result } = res.data
-                if(result) {
-                    data.reverse()
-                    data = data.map(item => {
-                        let { date_start, date_end, id, name, tag, association, poster } = item
-                        tag = tag.map(v => v.name)
-                        let logo = localUlr + association.icon
-                        return {
-                            data_start: date_start,
-                            data_end: date_end,
-                            tag,
-                            content: name,
-                            title: association.name,
-                            imgUrl: localUlr + poster[0],
-                            logoUrl: logo === localUlr || /heic$/i.test(logo) ? '/static/img/default.svg' : logo,
-                            url: '/pages/introduction/introduction?id=' + association.id,
-                            link: '/pages/Content/content?id=' + id
-                        }
-                    })
-                    that.setData({
-                        activityList: [...that.data.activityList, ...data]
-                    })
-                }
-            }
-        })
+    onLoad(e) {
+        let that = this;
+		let p = new Promise((resp, rej) => {
+            qq.showLoading({
+                title: '请稍等呦~',
+                mask:true,
 
-        //获取热门活动集合
-        qq.request({
-            url: activeUrl,
-            method: 'post',
-            data: {
-                page_num: 1,
-                page_count: 5,
-                token
-            },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success(res) {
-                let { data, result } = res.data
-                if(result) {
-                    data.reverse()
-                    data = data.map(item => {
-                        let { id, name, poster, association } = item
-                        let icon =  localUlr + association.icon
-                        return {
-                            url: '/pages/introduction/introduction?id=' + association.id,
-                            link: '/pages/Content/content?id=' + id,
-                            logoUrl: icon === '' || /heic$/i.test(icon) ? '/static/img/default.svg' : icon,
-                            imgUrl: localUlr + poster[0],
-                            title: association.name,
-                            content: name
-                        }
-                    })
-                    that.setData({
-                        activeList: data,
-                        left: 0
-                    })
+            })
+			qq.login({
+				success(res) {
+					//如果token不存在或者过期就请求token
+					if (res.code) {
+						qq.request({
+							url: localUlr + '/api/login',
+							data: {
+								code: res.code,
+								client: 'qq'
+							},
+							success(res) {
+								let { result, token } = res.data
+								let User = res.data.user
+								let id = User.user_id
+								if (result) {
+									qq.setStorageSync("token", token)
+									qq.setStorageSync("id", id)
+								}
+								resp(token)
+								let { user } = res.data
+								if(e){
+									if(e.introductionid){
+										qq.redirectTo({
+											url: '/pages/introduction/introduction?id='+e.introductionid
+										})
+										return;
+									}
+									if(e.contentid){
+										qq.redirectTo({
+											url: '/pages/Content/conetent?id='+e.contentid
+										})
+										return;
+									}
+								}
+							}
+						})
+					}
+				}
+			})
+		})
+        p.then(res => {
+            let token = qq.getStorageSync('token')
+            let { activityUrl, bannerUrl, activeUrl, activityIndex } = this.data
+            //获取校园活动数据
+            qq.request({
+                url: activityUrl,
+                method: 'post',
+                data: {
+                    page_num: activityIndex,
+                    page_count: 10,
+                    token
+                },
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                success(res) {
+                    qq.hideLoading();
+                    let { data, result } = res.data
+                    if(result) {
+                        data.reverse()
+                        data = data.map(item => {
+                            let { date_start, date_end, id, name, tag, association, poster } = item
+                            tag = tag.map(v => v.name)
+                            let logo = localUlr + association.icon
+                            return {
+                                data_start: date_start,
+                                data_end: date_end,
+                                tag,
+                                content: name,
+                                title: association.name,
+                                imgUrl: localUlr + poster[0],
+                                logoUrl: logo === localUlr || /heic$/i.test(logo) ? '/static/img/default.svg' : logo,
+                                url: '/pages/introduction/introduction?id=' + association.id,
+                                link: '/pages/Content/content?id=' + id
+                            }
+                        })
+                        that.setData({
+                            activityList: [...that.data.activityList, ...data]
+                        })
+                    }
                 }
-            }
-        })
+            })
 
-
-        //获取首页轮播图
-        qq.request({
-            url: bannerUrl,
-            method: 'get',
-            data: {
-                token
-            },
-            success(res) {
-                let { data, result } = res.data
-                
-                if(result) {
-                    data = data.map(item => {
-                        item.img = localUlr + item.img
-                        return item
-                    })
-                    that.setData({
-                        banner: data
-                    })
+            //获取热门活动集合
+            qq.request({
+                url: activeUrl,
+                method: 'post',
+                data: {
+                    page_num: 1,
+                    page_count: 5,
+                    token
+                },
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                success(res) {
+                    let { data, result } = res.data
+                    if(result) {
+                        data.reverse()
+                        data = data.map(item => {
+                            let { id, name, poster, association } = item
+                            let icon =  localUlr + association.icon
+                            return {
+                                url: '/pages/introduction/introduction?id=' + association.id,
+                                link: '/pages/Content/content?id=' + id,
+                                logoUrl: icon === '' || /heic$/i.test(icon) ? '/static/img/default.svg' : icon,
+                                imgUrl: localUlr + poster[0],
+                                title: association.name,
+                                content: name
+                            }
+                        })
+                        that.setData({
+                            activeList: data,
+                            left: 0
+                        })
+                    }
                 }
-            }
+            })
+
+            //获取首页轮播图
+            qq.request({
+                url: bannerUrl,
+                method: 'get',
+                data: {
+                    token
+                },
+                success(res) {
+                    let { data, result } = res.data
+                    
+                    if(result) {
+                        data = data.map(item => {
+                            item.img = localUlr + item.img
+                            return item
+                        })
+                        that.setData({
+                            banner: data
+                        })
+                    }
+                }
+            })
+            qq.showShareMenu({
+                showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+                withShareTicket:true,
+            })
         })
-        qq.showShareMenu({
-            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
-          })
+    },
+    onShareAppMessage() {
+        return({
+            title:'蜂拥-校园社团show',
+            imageUrl:'/static/img/cardImg.jpg'
+        })
     },
     onReachBottom() {
         if(this.data.isAll) {

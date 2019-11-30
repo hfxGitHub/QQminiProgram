@@ -13,82 +13,34 @@ Page({
 		loadingSrc: '/static/img/loading.gif',
 		verCode: ''
 	},
-	onLoad(e) {
+	onLoad() {
 		let that = this;
-		let p = new Promise((resp, rej) => {
-			qq.login({
-				success(res) {
-					//如果token不存在或者过期就请求token
-					if (res.code) {
-						qq.request({
-							url: localUlr + '/api/login',
-							data: {
-								code: res.code,
-								client: 'qq'
-							},
-							success(res) {
-								let { result, token } = res.data
-								let User = res.data.user
-								let id = User.user_id
-								if (result) {
-									qq.setStorageSync("token", token)
-									qq.setStorageSync("id", id)
-								}
-								resp(token)
-								let { user } = res.data
-								if(e){
-									if(e.introductionid){
-										qq.redirectTo({
-											url: '/pages/introduction/introduction?id='+e.introductionid
-										})
-										return;
-									}
-									if(e.contentid){
-										qq.redirectTo({
-											url: '/pages/Content/conetent?id='+e.contentid
-										})
-										return;
-									}
-								}
-								if(user.student_certify) {
-									qq.redirectTo({
-										url: '/pages/home/home'
-									})
-								}
-							}
-						})
-					}
+		let token = qq.getStorageSync('token')
+		//获取验证码
+		qq.request({
+			url: localUlr + '/api/studentCertify/preLogin',
+			data: {
+				token,
+				client: 'qq' 
+			},
+			success(res) {
+				let { result, captcha } = res.data
+				if(result && typeof captcha !== 'undefined') {
+					captcha = captcha.replace(/[\r\n]/g,"")
+					let base64Data = 'data:image/jpg;base64,' + captcha
+					that.setData({
+						verCode: base64Data
+					})
 				}
-			})
+			}
 		})
-		p.then(res => {
-			let token = qq.getStorageSync('token')
-			//获取验证码
-			qq.request({
-				url: localUlr + '/api/studentCertify/preLogin',
-				data: {
-					token,
-					client: 'qq' 
-				},
-				success(res) {
-					let { result, captcha } = res.data
-					if(result && typeof captcha !== 'undefined') {
-						captcha = captcha.replace(/[\r\n]/g,"")
-						let base64Data = 'data:image/jpg;base64,' + captcha
-						that.setData({
-							verCode: base64Data
-						})
-					}
-				}
-			})
-		})
-		
 	},
 	submit(e) {
 		let token = qq.getStorageSync('token')
 		var that = this;
 		qq.showLoading({
-			title: '登录中'
+			title: '登录中',
+			mask:true
 		})
 		let {
 			id,
@@ -105,7 +57,6 @@ Page({
 				token
 			},
 			success(res) {
-				console.log(res)
 				qq.hideLoading()
 				let {
 					result,
@@ -114,7 +65,6 @@ Page({
 					nickname,
 					permission
 				} = res.data
-				console.log(res)
 				if (result) {
 					qq.showToast({
 						title: '登录成功',
@@ -122,8 +72,8 @@ Page({
 						duration: 2000
 					})
 					app.globalData.id = id
-					qq.redirectTo({
-						url: '/pages/home/home'
+					qq.navigateBack({
+						delta: 1
 					})
 				} else {
 					//弹出密码错误消息
@@ -156,9 +106,16 @@ Page({
 			}
 		})
 		qq.showShareMenu({
-            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment']
+			showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true,
           })
 	},
+	onShareAppMessage() {
+        return({
+            title:'蜂拥-校园社团show',
+            imageUrl:'/static/img/cardImg.jpg'
+        })
+    },
 	againVerCode() {
 		let that = this
 		let token = qq.getStorageSync('token')

@@ -25,6 +25,9 @@ Page({
         list:[],
     },
     onLoad: function (e) {
+        qq.showLoading({
+            title: '请稍等呦~',
+        })
         let token = qq.getStorageSync('token') 
         const that = this;
         qq.request({
@@ -67,11 +70,11 @@ Page({
                     data_start:(data.date_start==undefined?'暂无更多信息':data.date_start)+'~'+(data.date_end==undefined?'':data.date_end),
                     association:data.association==undefined?'暂无更多信息~':data.association,
                     contentImgUrls:data.poster==undefined?[]:data.poster,
-                    // imgUrls:data.file==undefined?[]:data.file,
                     // groupId:data.qq_group==undefined?'':data.qq_group,
                     tag:data.tag,
                     imgUrls:localUlr+data.file,
                 })
+                qq.hideLoading()
             }
         })
         qq.request({
@@ -110,12 +113,6 @@ Page({
             title:this.data.activityName,
             imageUrl:this.data.contentImgUrls[0],
             path:'/pages/Content/content?contentid='+this.data.choseId,
-            fail: res => {
-                qq.showToast({
-                    title:'出错啦，请重试呦~',
-                    icon:'none',
-                })
-            }
         })
     },
     onPageScroll: function (ev) {

@@ -20,8 +20,14 @@ Page({
         // 左右滑动
         touchDot:0,
         nth:0,
+        isAll:false,
+        activityIndex:1,
+
     },
     onLoad: function (e) {
+        qq.showLoading({
+            title: '请稍等呦~',
+        })
         this.animation = qq.createAnimation({
             "duration":300,
         })
@@ -37,6 +43,7 @@ Page({
             url: localUlr + '/api/queryAssociation?association_id='+this.data.choseId + '&token=' + token,
             method:'GET',
             success(res){
+                qq.hideLoading()
                 var data = res.data.data;
                 var str,acticityData
                 if(data.brand_activity) {
@@ -55,7 +62,7 @@ Page({
             }
         })
         qq.request({
-            url: localUlr + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num=1&page_count=10' + '&token=' + token,
+            url: localUlr + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num='+this.data.activityIndex+'&page_count=10' + '&token=' + token,
             method:'POST',
             success(res){
                 var data = res.data.data;
@@ -82,11 +89,46 @@ Page({
             title:this.data.AssociationName,
             imageUrl:this.data.backgroundImg,
             path:'/pages/introduction/introduction?introductionid=' + this.data.choseId,
-            fail: res => {
+        })
+    },
+    onReachBottom() {
+        if(this.data.isAll) {
+            return
+        }
+        let token = qq.getStorageSync('token')
+        let that = this
+        qq.showLoading({
+            title: '请稍等呦~',
+        })
+        qq.request({
+            url: localUlr + '/api/association/queryActivityList?id=' + this.data.choseId + '&page_num='+this.data.activityIndex+'&page_count=10' + '&token=' + token,
+            method:'POST',
+            success(res){
+                qq.hideLoading()
+                if(res.data.length == 0){
+                    that.setData({
+                        isAll:true
+                    })
+                    return
+                }
+                var data = res.data.data;
+                for(var i = 0;i<data.length;i++){
+                    data[i].file = localUlr + data[i].file;
+                    for(var j = 0;j<data[i].poster.length;j++){
+                        data[i].poster[j] = localUlr + data[i].poster[j];
+                    }
+                }
+                that.setData({      
+                    acticityData:[...that.data.acticityData,...data],
+                    activityIndex:activityIndex+1
+                })                
+            },
+            fail(res) {
                 qq.showToast({
-                    title:'出错啦，请重试呦~',
-                    icon:'none',
-                })
+                    title: '出错了~',
+                    icon: 'none',
+                    duration: 2000
+                  })
             }
         })
     },

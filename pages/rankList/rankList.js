@@ -62,6 +62,12 @@ Page({
             withShareTicket:true,
           })
     },
+    onShareAppMessage() {
+        return({
+            title:'蜂拥-校园社团show',
+            imageUrl:'/static/img/cardImg.jpg'
+        })
+    },
     //立即参加事件
     join(e) {
         let url = e.currentTarget.dataset.link
